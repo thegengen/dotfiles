@@ -1,0 +1,11 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =9
+let g:netrw_dirhist_1='/Users/minciue/.rvm/gems/ree-1.8.7-2011.03/gems/spork-0.8.5'
+let g:netrw_dirhist_2='/Users/minciue/.rvm/gems/ree-1.8.7-2011.03/gems/spork-0.8.5/lib'
+let g:netrw_dirhist_3='/Users/minciue/.rvm/gems/ree-1.8.7-2011.03/gems/spork-0.8.5/lib/spork'
+let g:netrw_dirhist_4='/Users/minciue/.rvm/gems/ree-1.8.7-2011.03/gems/spork-0.8.5/lib/spork/test_framework'
+let g:netrw_dirhist_5='/Users/minciue/.rvm/gems/ree-1.8.7-2011.03/gems/spork-0.8.5/lib/spork'
+let g:netrw_dirhist_6='/Users/minciue/.rvm/gems/ree-1.8.7-2011.03/gems/spork-testunit-0.0.5'
+let g:netrw_dirhist_7='/Users/minciue/.rvm/gems/ree-1.8.7-2011.03/gems/spork-testunit-0.0.5/lib'
+let g:netrw_dirhist_8='/Users/minciue/.rvm/gems/ree-1.8.7-2011.03/gems/spork-testunit-0.0.5/lib/spork'
+let g:netrw_dirhist_9='/Users/minciue/.rvm/gems/ree-1.8.7-2011.03/gems/spork-testunit-0.0.5/lib/spork/test_framework'
