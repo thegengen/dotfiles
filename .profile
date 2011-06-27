@@ -34,6 +34,23 @@ export RUBY_GC_MALLOC_LIMIT=1000000000
 export RUBY_HEAP_FREE_MIN=500000
 
 if [[ -s /Users/minciue/.rvm/scripts/rvm ]] ; then source /Users/minciue/.rvm/scripts/rvm ; fi
-export PS1="\W(\$(~/.rvm/bin/rvm-prompt i v g))$ "
+parse_git_branch() {
+  if [ -d .git ]
+  then
+    echo -n ' ['
+    git branch 2> /dev/null | sed -e '/^[^*]/d' | tr -d '* ' | tr -d '\n'
+    echo -n ': '
+  fi
+}
+
+get_git_changes() {
+  if [ -d .git ] 
+  then 
+    git status --short | wc -l | sed -e 's|[^0-9]*||' | sed -e 's|\n||' | tr -d '\n'
+    echo -n ']'
+  fi
+}
+
+export PS1="\W \[\033[0;34m\][\$(~/.rvm/bin/rvm-prompt i v g)]\[\033[0;31m\]\$(parse_git_branch)\$(get_git_changes)\[\033[0m\] :) "
 export PATH=/opt/local/bin:/opt/local/sbin:/usr/local/sbin:/usr/local/bin:$PATH
 export MANPATH=/opt/local/share/man:$MANPATH

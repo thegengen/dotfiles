@@ -7,7 +7,7 @@ function! s:LaunchPeepOpenViaVim()
  silent exe "!open -a PeepOpen " . shellescape(cwd)
 endfunction
 
-"colorscheme minciue
-colorscheme minciue-railscasts
+colorscheme solarized
 set fuoptions=maxvert,maxhorz
 set fullscreen
+set bg=dark
