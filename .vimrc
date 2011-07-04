@@ -11,7 +11,7 @@ set equalalways
 set nocursorline
 set autoread
 set directory=/tmp/ 
-
+set wildignore+=*.o,*.obj,.git,vendor/*
 " indentation
 set ai
 set si
@@ -29,9 +29,10 @@ let g:acp_behaviorSnipmateLength=1
 let g:acp_behaviorKeywordLength = 4
 let g:acp_behaviorKeywordIgnores = []
 
-map <Leader><Leader> :BufExplorer<CR>
+map ; :CommandT<CR>
+map <Leader><Leader> :CommandTBuffer<CR>
+let g:CommandTMaxHeight=15
 
-map ; :PeepOpen<CR>
 map <Leader>t :Rtags<CR>
 map <Leader>f :Ack 
 map <Leader>a :Tabularize assignment<CR>
