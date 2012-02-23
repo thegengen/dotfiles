@@ -18,8 +18,13 @@ if ( exists('g:loaded_ctrlp_undo') && g:loaded_ctrlp_undo )
 en
 let g:loaded_ctrlp_undo = 1
 
-let s:undo_var = ['ctrlp#undo#init(s:undotree)', 'ctrlp#undo#accept',
-	\ 'undo', 'udo']
+let s:undo_var = {
+	\ 'init': 'ctrlp#undo#init(s:undotree)',
+	\ 'accept': 'ctrlp#undo#accept',
+	\ 'lname': 'undo',
+	\ 'sname': 'udo',
+	\ 'type': 'line',
+	\ }
 
 let g:ctrlp_ext_vars = exists('g:ctrlp_ext_vars') && !empty(g:ctrlp_ext_vars)
 	\ ? add(g:ctrlp_ext_vars, s:undo_var) : [s:undo_var]
@@ -75,12 +80,14 @@ fu! s:humantime(nr)
 endf
 
 fu! s:syntax()
+	for [ke, va] in items({'T': 'Directory', 'Br': 'Comment', 'Nr': 'String'})
+		if !hlexists('CtrlPUndo'.ke)
+			exe 'hi link CtrlPUndo'.ke va
+		en
+	endfo
 	sy match CtrlPUndoT '\d\+ \zs[^ ]\+\ze'
 	sy match CtrlPUndoBr '\[\|\]'
 	sy match CtrlPUndoNr '\[\d\+\]$' contains=CtrlPUndoBr
-	hi link CtrlPUndoT Directory
-	hi link CtrlPUndoBr Comment
-	hi link CtrlPUndoNr String
 endf
 
 fu! s:dict2list(dict)

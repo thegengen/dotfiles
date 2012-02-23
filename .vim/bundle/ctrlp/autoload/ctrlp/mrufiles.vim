@@ -8,61 +8,81 @@
 fu! ctrlp#mrufiles#opts()
 	let opts = {
 		\ 'g:ctrlp_mruf_max': ['s:max', 250],
-		\ 'g:ctrlp_mruf_include': ['s:include', ''],
-		\ 'g:ctrlp_mruf_exclude': ['s:exclude', ''],
+		\ 'g:ctrlp_mruf_include': ['s:in', ''],
+		\ 'g:ctrlp_mruf_exclude': ['s:ex', ''],
 		\ 'g:ctrlp_mruf_case_sensitive': ['s:csen', 1],
+		\ 'g:ctrlp_mruf_relative': ['s:re', 0],
+		\ 'g:ctrlp_mruf_last_entered': ['s:mre', 0],
 		\ }
 	for [ke, va] in items(opts)
 		exe 'let' va[0] '=' string(exists(ke) ? eval(ke) : va[1])
 	endfo
 	let s:csen = s:csen ? '#' : '?'
-	let s:cadir = ctrlp#utils#cachedir().ctrlp#utils#lash().'mru'
-	let s:cafile = s:cadir.ctrlp#utils#lash().'cache.txt'
 endf
 cal ctrlp#mrufiles#opts()
 fu! ctrlp#mrufiles#list(bufnr, ...) "{{{1
 	if s:locked | retu | en
+	let bufnr = a:bufnr + 0
+	if bufnr > 0
+		let fn = fnamemodify(bufname(bufnr), ':p')
+		let fn = exists('+ssl') ? tr(fn, '/', '\') : fn
+		if empty(fn) || !empty(&bt) || ( !empty(s:in) && fn !~# s:in )
+			\ || ( !empty(s:ex) && fn =~# s:ex ) || !filereadable(fn)
+			retu
+		en
+	en
+	if !exists('s:cadir') || !exists('s:cafile')
+		let s:cadir = ctrlp#utils#cachedir().ctrlp#utils#lash().'mru'
+		let s:cafile = s:cadir.ctrlp#utils#lash().'cache.txt'
+	en
+	if a:0 && a:1 == 2
+		cal ctrlp#utils#writecache([], s:cadir, s:cafile)
+		retu []
+	en
 	" Get the list
 	let mrufs = ctrlp#utils#readfile(s:cafile)
 	" Remove non-existent files
 	if a:0 && a:1 == 1
-		let mrufs = s:rmdeleted(mrufs)
-	elsei a:0 && a:1 == 2
-		cal ctrlp#utils#writecache([], s:cadir, s:cafile)
-		retu []
+		cal filter(mrufs, '!empty(ctrlp#utils#glob(v:val, 1)) && !s:excl(v:val)')
+		if exists('+ssl')
+			cal map(mrufs, 'tr(v:val, ''/'', ''\'')')
+			cal filter(mrufs, 'count(mrufs, v:val) == 1')
+		en
+		cal ctrlp#utils#writecache(mrufs, s:cadir, s:cafile)
 	en
-	" Return the list, filter the active buffer
-	if a:bufnr == -1
-		let crfile = fnamemodify(bufname(winbufnr(winnr('#'))), ':p')
-		retu empty(crfile) ? mrufs : filter(mrufs, 'v:val !='.s:csen.' crfile')
+	" Return the list with the active buffer removed
+	if bufnr == -1
+		let crf = fnamemodify(bufname(winbufnr(winnr('#'))), ':p')
+		let crf = exists('+ssl') ? tr(crf, '/', '\') : crf
+		let mrufs = empty(crf) ? mrufs : filter(mrufs, 'v:val !='.s:csen.' crf')
+		if s:re
+			let cwd = exists('+ssl') ? tr(getcwd(), '/', '\') : getcwd()
+			cal filter(mrufs, '!stridx(v:val, cwd)')
+		en
+		cal map(mrufs, 'fnamemodify(v:val, '':.'')')
+		retu mrufs
 	en
-	" Filter it
-	let filename = fnamemodify(bufname(a:bufnr + 0), ':p')
-	if empty(filename) || !empty(&bt)
-		\ || ( !empty(s:include) && filename !~# s:include )
-		\ || ( !empty(s:exclude) && filename =~# s:exclude )
-		\ || ( index(mrufs, filename) < 0 && !filereadable(filename) )
-		retu
-	en
-	" Remove old matched entry
-	cal filter(mrufs, 'v:val !='.s:csen.' filename')
+	" Remove old entry
+	cal filter(mrufs, 'v:val !='.s:csen.' fn')
 	" Insert new one
-	cal insert(mrufs, filename)
-	" Remove oldest entry
+	cal insert(mrufs, fn)
+	" Remove oldest entry or entries
 	if len(mrufs) > s:max | cal remove(mrufs, s:max, -1) | en
 	cal ctrlp#utils#writecache(mrufs, s:cadir, s:cafile)
 endf "}}}
-fu! s:rmdeleted(mrufs) "{{{
-	cal filter(a:mrufs, '!empty(ctrlp#utils#glob(v:val, 1))')
-	cal ctrlp#utils#writecache(a:mrufs, s:cadir, s:cafile)
-	retu a:mrufs
-endf
+fu! s:excl(fn) "{{{
+	retu !empty(s:ex) && a:fn =~# s:ex
+endf "}}}
 fu! ctrlp#mrufiles#init() "{{{1
 	let s:locked = 0
 	aug CtrlPMRUF
 		au!
 		au BufReadPost,BufNewFile,BufWritePost *
 			\ cal ctrlp#mrufiles#list(expand('<abuf>', 1))
+		if s:mre
+			au BufEnter,BufUnload *
+				\ cal ctrlp#mrufiles#list(expand('<abuf>', 1))
+		en
 		au QuickFixCmdPre  *vimgrep* let s:locked = 1
 		au QuickFixCmdPost *vimgrep* let s:locked = 0
 	aug END

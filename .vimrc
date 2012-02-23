@@ -5,6 +5,7 @@
 set nocp
 set number
 set incsearch
+set hlsearch
 set smartcase
 set ruler
 set wildmode=longest,list
@@ -27,12 +28,11 @@ set shiftwidth=2
 call pathogen#infect() 
 
 
-
 " === Plugin Settings ===
 "acp
-let g:acp_behaviorSnipmateLength=1
+"let g:acp_behaviorSnipmateLength=1
 let g:acp_behaviorKeywordLength = 2
-let g:acp_behaviorKeywordIgnores = ['if','end','class','module']
+let g:acp_behaviorKeywordIgnores = ['if','end','class','module', 'do']
 
 "ctrlp
 let g:ctrlp_custom_ignore = '\.git$\|\.svn$\|\.hg$\|*\.o|*\.obj\|*\.jar\|vendor\|bin\|tags\|tmp\|log\|.DS_Store$'
@@ -41,13 +41,12 @@ let g:ctrlp_custom_ignore = '\.git$\|\.svn$\|\.hg$\|*\.o|*\.obj\|*\.jar\|vendor\
 let g:tagbar_autoclose=0
 
 " === Shorcuts === 
-" I limit myself to 20 shortcuts (most in pairs) to keep myself from going insane.
 
-" ack: 2 shortcuts based on (f)ind
+" ack: 2 shortcuts 
 map <Leader>f :Ack 
 map <Leader>F :Ack <cword><CR>
 
-" ctrlp: 2 shortcuts based on (b)rowse
+" ctrlp: 2 shortcuts 
 map <Leader>b :CtrlP<CR>
 map <Leader>B :CtrlPBuffer<CR>
 
@@ -76,3 +75,6 @@ map <space> zz
 
 " ctags
 map <Leader>x :silent !ctags -R --exclude="public" --exclude="*.haml" --exclude="vendor" --exclude="db" --exclude="script" .<CR>
+
+" stop hilighting
+map <Leader>n :noh<CR>

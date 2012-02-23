@@ -26,7 +26,9 @@ com! CtrlPCurWD   cal ctrlp#init(0, 0)
 com! CtrlPCurFile cal ctrlp#init(0, 1)
 com! CtrlPRoot    cal ctrlp#init(0, 2)
 
-exe 'nn <silent>' g:ctrlp_map ':<c-u>'.g:ctrlp_cmd.'<cr>'
+if g:ctrlp_map != ''
+	exe 'nn <silent>' g:ctrlp_map ':<c-u>'.g:ctrlp_cmd.'<cr>'
+en
 
 cal ctrlp#mrufiles#init()
 
@@ -53,6 +55,10 @@ if index(s:ext, 'buffertag') >= 0
 	com! -n=? -com=buffer CtrlPBufTag
 		\ cal ctrlp#init(ctrlp#buffertag#cmd(0, <q-args>))
 	com! CtrlPBufTagAll cal ctrlp#init(ctrlp#buffertag#cmd(1))
+en
+
+if index(s:ext, 'rtscript') >= 0
+	com! CtrlPRTS cal ctrlp#init(ctrlp#rtscript#id())
 en
 
 unl s:ext

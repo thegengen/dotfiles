@@ -17,7 +17,13 @@ if exists('g:loaded_ctrlp_line') && g:loaded_ctrlp_line
 en
 let g:loaded_ctrlp_line = 1
 
-let s:line_var = ['ctrlp#line#init()', 'ctrlp#line#accept', 'lines', 'lns']
+let s:line_var = {
+	\ 'init': 'ctrlp#line#init()',
+	\ 'accept': 'ctrlp#line#accept',
+	\ 'lname': 'lines',
+	\ 'sname': 'lns',
+	\ 'type': 'tabe',
+	\ }
 
 let g:ctrlp_ext_vars = exists('g:ctrlp_ext_vars') && !empty(g:ctrlp_ext_vars)
 	\ ? add(g:ctrlp_ext_vars, s:line_var) : [s:line_var]
@@ -29,7 +35,7 @@ fu! ctrlp#line#init()
 	for each in bufs
 		let from_file = readfile(each)
 		cal map(from_file, 'tr(v:val, ''	'', '' '')')
-		let [id, len_ff, bufnr] = [1, len(from_file), bufnr(each)]
+		let [id, len_ff, bufnr] = [1, len(from_file), bufnr('^'.each.'$')]
 		wh id <= len_ff
 			let from_file[id-1] .= '	#:'.bufnr.':'.id
 			let id += 1
@@ -37,8 +43,10 @@ fu! ctrlp#line#init()
 		cal filter(from_file, 'v:val !~ ''^\s*\t#:\d\+:\d\+$''')
 		cal extend(lines, from_file)
 	endfo
+	if !hlexists('CtrlPTabExtra')
+		hi link CtrlPTabExtra Comment
+	en
 	sy match CtrlPTabExtra '\zs\t.*\ze$'
-	hi link CtrlPTabExtra Comment
 	retu lines
 endf
 

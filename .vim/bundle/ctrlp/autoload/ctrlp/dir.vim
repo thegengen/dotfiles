@@ -17,8 +17,13 @@ let s:ars = [
 	\ 's:glob',
 	\ ]
 
-let s:dir_var = ['ctrlp#dir#init('.join(s:ars, ', ').')', 'ctrlp#dir#accept',
-	\ 'dirs', 'dir']
+let s:dir_var = {
+	\ 'init': 'ctrlp#dir#init('.join(s:ars, ', ').')',
+	\ 'accept': 'ctrlp#dir#accept',
+	\ 'lname': 'dirs',
+	\ 'sname': 'dir',
+	\ 'type': 'path',
+	\ }
 
 let g:ctrlp_ext_vars = exists('g:ctrlp_ext_vars') && !empty(g:ctrlp_ext_vars)
 	\ ? add(g:ctrlp_ext_vars, s:dir_var) : [s:dir_var]
@@ -45,19 +50,19 @@ fu! ctrlp#dir#init(...)
 	for each in range(len(s:ars))
 		exe 'let' s:ars[each] '=' string(eval('a:'.(each + 1)))
 	endfo
-	let cadir = ctrlp#utils#cachedir().ctrlp#utils#lash().s:dir_var[3]
-	let cafile = cadir.ctrlp#utils#lash().ctrlp#utils#cachefile(s:dir_var[3])
+	let cadir = ctrlp#utils#cachedir().ctrlp#utils#lash().s:dir_var['sname']
+	let cafile = cadir.ctrlp#utils#lash().ctrlp#utils#cachefile(s:dir_var['sname'])
 	if g:ctrlp_newdir || !filereadable(cafile)
 		let g:ctrlp_alldirs = []
 		cal s:globdirs(s:cwd, 0)
 		cal ctrlp#rmbasedir(g:ctrlp_alldirs)
 		let read_cache = 0
+		if len(g:ctrlp_alldirs) <= s:compare_lim
+			cal sort(g:ctrlp_alldirs, 'ctrlp#complen')
+		en
 	el
 		let g:ctrlp_alldirs = ctrlp#utils#readfile(cafile)
 		let read_cache = 1
-	en
-	if len(g:ctrlp_alldirs) <= s:compare_lim
-		cal sort(g:ctrlp_alldirs, 'ctrlp#complen')
 	en
 	if !read_cache
 		cal ctrlp#utils#writecache(g:ctrlp_alldirs, cadir, cafile)
