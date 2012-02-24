@@ -1,0 +1,9 @@
+[user]
+	name = Eugen Minciu
+	email = eugen@lesseverything.com
+[github]
+	user = minciue
+[color]
+	branch = auto
+	status = auto
+	diff = auto
