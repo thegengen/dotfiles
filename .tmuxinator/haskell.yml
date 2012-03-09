@@ -1,10 +1,10 @@
 # ~/.tmuxinator/haskell.yml
 # you can make as many tabs as you wish...
 
-project_name: Haskell
+project_name: haskell
 project_root: ~/haskell
 tabs:
-  - editor:
+  - main:
       layout: main-horizontal
       panes:
         - vim

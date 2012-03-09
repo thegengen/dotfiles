@@ -1,9 +1,8 @@
 # ~/.tmuxinator/menubaby.yml
 # you can make as many tabs as you wish...
 
-project_name: Menubaby
+project_name: menubaby
 project_root: ~/apps/menubaby
-rvm: ree@menubaby
 tabs:
   - main:
       layout: main-vertical
@@ -12,9 +11,8 @@ tabs:
         - lt
         - 
   - shell: 
-  - database: rails db
-  - server: rails s
-  - logs: tail -f logs/development.log
-  - console: rails c
-  - production: ssh root@menubaby.com
-  - staging: ssh root@menubabystaging.com
+  - database: script/dbconsole
+  - server: ss
+  - console: sc
+  - production: ssh -i ~/.ssh/ey-menubaby-key root@menubaby.com
+  - staging: ssh -i ~/.ssh/ey-menubaby-key root@menubabystaging.com

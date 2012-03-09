@@ -1,0 +1,17 @@
+# ~/.tmuxinator/menubaby.yml
+# you can make as many tabs as you wish...
+
+project_name: lessaccounting
+project_root: ~/apps/lessaccounting
+tabs:
+  - main:
+      layout: main-vertical
+      panes:
+        - vim
+        - lt single
+        - 
+  - shell: 
+  - database: script/dbconsole
+  - server: script/server
+  - console: script/console
+  - greenlantern: ssh $GL
