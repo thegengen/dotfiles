@@ -28,7 +28,9 @@ set history=1000
 
 call pathogen#infect() 
 
-
+" color settings
+set bg=dark
+colorscheme solarized
 " === Plugin Settings ===
 "acp
 let g:acp_behaviorKeywordLength = 5
@@ -46,11 +48,16 @@ let g:haddock_browser = "/usr/bin/lynx"
 let g:haddock_docdir = "/usr/share/haddock-2.9.2"
 let g:haskell_indent_if = 2 
 
+"vim-ruby-refactoring
+let g:ruby_refactoring_map_keys = 0
+
 " === Shorcuts === 
 
-" ack: 2 shortcuts 
+" ack: 4 shortcuts 
 map <Leader>f :Ack 
 map <Leader>F :Ack <cword><CR>
+map <Leader>J <c-w>jj<CR>
+map <Leader>K <c-w>jk<CR>
 
 " ctrlp: 2 shortcuts 
 map <Leader>o :CtrlP<CR>

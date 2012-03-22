@@ -62,6 +62,7 @@ endfunction
 function s:ExecTest(cmd)
   "silent exe "!echo '" . a:cmd . "' && " . a:cmd
   silent exe "!echo " . "\"" . a:cmd . "\" > " . g:less_test_tmp_file
+  redraw!
 endfunction
 
 function s:RunTest()
@@ -78,7 +79,7 @@ function s:RunTest()
     let cmd = substitute(cmd, '%p', s:EscapeBackSlash(@%), '')
 
     if @% =~ '^test'
-      let cmd = substitute(cmd, '^ruby ', 'ruby -Itest -rtest_helper ', '')
+      let cmd = substitute(cmd, '^ruby ', 'ruby -Itest ', '')
     endif
 
     call s:ExecTest(cmd)
@@ -194,6 +195,7 @@ endfunction
 
 function s:RunLast()
   silent exe "!touch " . g:less_test_tmp_file
+  redraw!
 endfunction
 
 noremap <unique> <script> <Plug>RubyTestRun <SID>Run
