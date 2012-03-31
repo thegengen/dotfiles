@@ -33,13 +33,15 @@ set bg=dark
 colorscheme Tomorrow-Night
 " === Plugin Settings ===
 "acp
-let g:acp_behaviorKeywordLength = 5
-let g:acp_behaviorKeywordIgnores = ['if','end','class','module', 'do']
-let g:acp_behaviorRubyOmniLength = 2
+"let g:acp_behaviorKeywordLength = 5
+"let g:acp_behaviorKeywordIgnores = ['if','end','class','module', 'do']
+"let g:acp_behaviorRubyOmniLength = 2
 
 "ctrlp
 let g:ctrlp_custom_ignore = '\.git$\|\.svn$\|\.hg$\|*\.o|*\.obj\|*\.jar\|vendor\|bin\|tags\|tmp\|log\|.DS_Store$'
 
+"supertab
+"let g:SuperTabDefaultCompletionType="<c-x><c-]>"
 " tagbar
 let g:tagbar_autoclose=0
 

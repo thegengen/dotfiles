@@ -39,9 +39,6 @@ export RUBY_HEAP_SLOTS_GROWTH_FACTOR=1
 export RUBY_GC_MALLOC_LIMIT=1000000000
 export RUBY_HEAP_FREE_MIN=500000
 
-if [[ -s /home/minciue/.rvm/scripts/rvm ]] ; then source /home/minciue/.rvm/scripts/rvm ; fi
-[[ -s $HOME/.tmuxinator/scripts/tmuxinator ]] && source $HOME/.tmuxinator/scripts/tmuxinator
-
 parse_git_branch() {
   if [ -d .git ]
   then
@@ -61,3 +58,9 @@ get_git_changes() {
 export -f parse_git_branch
 export -f get_git_changes
 export PS1="\W \[\033[0;34m\][\$(~/.rvm/bin/rvm-prompt i v g)]\[\033[0;31m\]\$(parse_git_branch)\$(get_git_changes)\[\033[0m\] :) "
+
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+rvm use --default ree-1.8.7-2012.02
+[[ -s $HOME/.tmuxinator/scripts/tmuxinator ]] && source $HOME/.tmuxinator/scripts/tmuxinator
+
+
