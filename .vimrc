@@ -22,6 +22,7 @@ syntax on
 set wildignore+=*.o,*.obj,.git
 set ai
 set si
+set expandtab
 set softtabstop=2
 set shiftwidth=2
 set history=1000
@@ -31,17 +32,26 @@ call pathogen#infect()
 " color settings
 set bg=dark
 colorscheme Tomorrow-Night
+set bg=dark
+
 " === Plugin Settings ===
-"acp
-"let g:acp_behaviorKeywordLength = 5
-"let g:acp_behaviorKeywordIgnores = ['if','end','class','module', 'do']
-"let g:acp_behaviorRubyOmniLength = 2
+" acp
+let g:acp_completeoptPreview = 1
+
+let g:acp_behaviorKeywordLength = 5
+let g:acp_behaviorKeywordIgnores = ['if','end','class','module', 'do', 'user>']
+let g:acp_behaviorRubyOmniLength = 2
+
+" finish complete on Tab 
+inoremap <Tab> <C-R>=pumvisible() ? "\<lt>c-y>" : "\<lt>Tab>"<CR>
 
 "ctrlp
 let g:ctrlp_custom_ignore = '\.git$\|\.svn$\|\.hg$\|*\.o|*\.obj\|*\.jar\|vendor\|bin\|tags\|tmp\|log\|.DS_Store$'
 
-"supertab
-"let g:SuperTabDefaultCompletionType="<c-x><c-]>"
+"slimv
+let g:lisp_rainbow = 1
+let g:slimv_ctags="/usr/bin/ctags"
+
 " tagbar
 let g:tagbar_autoclose=0
 
@@ -58,19 +68,16 @@ map <Leader>K <c-w>jk<CR>
 
 " ctrlp: 2 shortcuts 
 map <Leader>o :CtrlP<CR>
-map <Leader>O :CtrlPBuffer<CR>
-
-" gundo: 1 shortcut
-map <Leader>u :GundoToggle<CR>
+map ; :CtrlPBuffer<CR>
 
 " less_test: 4 shortcuts
 " <Leader>r - run test what's under cursor
 " <Leader>R - test the entire file
 " <Leader>l - run the last test
-map <Leader>T :silent !echo 'xvfb-run rake' > tmp/testcmd<CR><C-l>
+map <Leader>T :silent !echo 'xvfb-run bundle exec rake' > tmp/testcmd<CR><C-l>
 
-" tagbar: 1 shortcut
-map <Leader>t :TagbarToggle<CR>
+" slimv: 1 shortcut
+map ,C ,c<c-w>x10<c-w>-
 
 " goto def: 2 shorcuts
 map <Leader>d /def <CR>zz:noh<CR>
@@ -80,8 +87,14 @@ map <Leader>D ?def <CR>zz:noh<CR>
 map <space> zz
 
 " tags: 2 shortcuts
-map <Leader>x :silent !ctags -R --exclude="public" --exclude="*.haml" --exclude="vendor" --exclude="db" --exclude="script" .<CR><C-l>
+map <Leader>] :silent !ctags -R --exclude="public" --exclude="*.haml" --exclude="vendor" --exclude="db" --exclude="script" .<CR><C-l>
 map <Leader>j :tjump 
 
 " stop hilighting
 map <Leader>n :noh<CR>
+
+" window navigation: 2 shortcuts
+map <c-j> <c-w>j
+map <c-k> <c-w>k
+imap <c-j> <c-w>j
+imap <c-k> <c-w>k
