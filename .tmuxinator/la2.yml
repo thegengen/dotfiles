@@ -1,0 +1,12 @@
+# ~/.tmuxinator/la2.yml
+# you can make as many tabs as you wish...
+
+project_name: la2
+project_root: ~/apps/la2
+tabs:
+  - editor:
+      layout: main-vertical
+      panes:
+        - vim
+        - bundle exec guard
+        - 

@@ -1,0 +1,15 @@
+# ~/.tmuxinator/clojure.yml
+# you can make as many tabs as you wish...
+
+project_name: clojure
+project_root: ~/clojure/testprj
+tabs:
+  - editor:
+      layout: main-vertical
+      panes:
+        - vim
+        - # a
+        - # b
+  - nailgun:
+      panes:
+        - lein swank
