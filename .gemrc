@@ -1,0 +1,1 @@
+custom_shebang: $env ruby_noexec_wrapper
