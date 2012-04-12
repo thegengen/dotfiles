@@ -16,3 +16,4 @@ tabs:
   - console: script/console
   - greenlantern: ssh $GL
   - irc: weechat-curses
+  - todo: vim ~/todo/lessaccounting.otl
