@@ -8,12 +8,11 @@ tabs:
       layout: main-vertical
       panes:
         - vim
-        - lt single
-        - 
+        - lt
+        - tmux resize-pane -D 15 && clear && tmux select-pane -t 0
   - shell: 
   - database: script/dbconsole
   - server: script/server
   - console: script/console
   - greenlantern: ssh $GL
-  - irc: weechat-curses
-  - todo: vim ~/todo/lessaccounting.otl
+  - ironman: ssh $IRONMAN
