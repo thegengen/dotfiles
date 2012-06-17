@@ -1,2 +1,3 @@
 xrdb -merge /home/minciue/.Xresources
-exec awesome
+xset r rate 200 50
+exec wmii

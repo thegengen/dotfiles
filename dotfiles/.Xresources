@@ -1,4 +1,5 @@
-Rxvt.font: xft:Bitstream Vera Sans Mono:pixelsize=12
+! Rxvt.font: xft:DejaVu Sans Mono:pixelsize=12
+Rxvt.font: terminus-14
 Rxvt.foreground: #c5c8c6 
 Rxvt.background: #1d1f21
 
