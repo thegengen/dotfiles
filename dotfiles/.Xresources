@@ -1,7 +1,7 @@
 ! Rxvt.font: xft:DejaVu Sans Mono:pixelsize=12
 Rxvt.font: terminus-14
-Rxvt.foreground: #c5c8c6 
-Rxvt.background: #1d1f21
+Rxvt.foreground: #4d4d4c
+Rxvt.background: #fdfdfd
 
 Rxvt.color0: #1d1f21
 Rxvt.color1: #cc6666
