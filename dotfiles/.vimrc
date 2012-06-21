@@ -74,3 +74,7 @@ map <space> zz
 " tags: 2 shortcuts
 map <Leader>; :silent !ctags -R --exclude="coverage" --exclude="public"--exclude="**/*.haml" --exclude="**/*.js" --exclude="vendor" --exclude="db" --exclude="script" .<CR><C-l>
 map ; :tjump 
+
+" window navigaton: 2 shortcuts
+map <Leader>j <C-w>j
+map <Leader>k <C-w>k
