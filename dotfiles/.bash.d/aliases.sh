@@ -1,0 +1,17 @@
+alias ls="ls -G"
+alias sp="source ~/.bash_profile"
+alias ss="./script/server --debugger"
+alias sc="./script/console --debugger"
+alias sr="./script/rails"
+alias sg="./script/generate"
+alias lt="./script/less_test autotest"
+alias dbc="script/dbconsole"
+alias rdb="rdebug -Itest --no-stop"
+
+alias v="mvim"
+alias gemi="gem install --no-rdoc --no-ri"
+alias tmkill="tmux kill-session -t"
+alias tmlist="tmux list-sessions"
+
+alias mi="rake db:migrate && rake db:test:clone && rake annotate_models"
+alias rb="rake db:rollback && rake annotate_models && rake db:test:clone"
