@@ -1,7 +1,7 @@
 files = {
   "ack/ackrc"   => "~/.ackrc",
   "bash/profile" => "~/.bash_profile",
-  "bash/bash.d"  => "~/.bash.d"
+  "bash/bash.d"  => "~/.bash.d",
   "rubygems/gemrc" => "~/.gemrc"
 }
 
