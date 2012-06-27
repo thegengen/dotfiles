@@ -1,5 +1,5 @@
 files = {
-  "ack/_ackrc"   => "~/.ackrc",
+  "ack/ackrc"   => "~/.ackrc",
   "bash/profile" => "~/.bash_profile",
   "bash/bash.d"  => "~/.bash.d"
 }
