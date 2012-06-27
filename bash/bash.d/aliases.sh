@@ -8,8 +8,6 @@ alias lt="./script/less_test autotest"
 alias dbc="script/dbconsole"
 alias rdb="rdebug -Itest --no-stop"
 
-alias v="mvim"
-alias gemi="gem install --no-rdoc --no-ri"
 alias tmkill="tmux kill-session -t"
 alias tmlist="tmux list-sessions"
 
