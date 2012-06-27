@@ -2,7 +2,9 @@ files = {
   "ack/ackrc"   => "~/.ackrc",
   "bash/profile" => "~/.bash_profile",
   "bash/bash.d"  => "~/.bash.d",
-  "rubygems/gemrc" => "~/.gemrc"
+  "rubygems/gemrc" => "~/.gemrc",
+  "git/gitconfig" => "~/.gitconfig",
+  "git/gitignore" => "~/.gitignore"
 }
 
 desc "install dotfiles on the system"
