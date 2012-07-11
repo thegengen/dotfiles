@@ -13,14 +13,14 @@ files = {
 desc "install dotfiles on the system"
 task :install do
   files.each do |source, dest|
-    run("cp -r #{source} #{dest}")
+    run("rm -rf #{dest} && cp -r #{source} #{dest}")
   end
 end
 
 desc "copy files into the repo from the system"
 task :fetch do
   files.each do |dest, source|
-    run("cp -r #{source} #{dest}")
+    run("rm -rf #{dest} && cp -r #{source} #{dest}")
   end
 end
 
