@@ -1,0 +1,36 @@
+# -*- muttrc -*-
+#
+# Sidebar settings for mutt.
+#
+# $Id: sidebar 16 2007-03-09 19:52:41Z vdanen $
+
+set sidebar_width=25
+set sidebar_visible=no
+set sidebar_delim=' '
+
+# which mailboxes to list in the sidebar (list them all)
+mailboxes =inbox =mbox =sent =postponed
+
+# color of folders with new mail
+color sidebar_new yellow default
+#color sidebar black default
+
+# alt-n, alt-p to select next/prev folder
+# alt-o to open selected folder (doesn't seem to work??)
+#bind index \epsidebar-prev
+#bind index \ensidebar-next
+#bind index \eosidebar-open
+#bind pager \epsidebarsidebar-prev
+#bind pager \ensidebarsidebar-next
+#bind pager \eosidebarsidebar-open
+
+# I don't need these.  just for documentation purposes.  See below.
+# sidebar-scroll-up
+# sidebar-scroll-down
+
+# b toggles sidebar visibility
+macro index b '<enter-command>toggle sidebar_visible<enter>'
+macro pager b '<enter-command>toggle sidebar_visible<enter>'
+
+# Remap bounce-message function to "B"
+bind index B bounce-message
