@@ -7,7 +7,8 @@ files = {
   "git/gitignore" => "~/.gitignore",
   "vim" => "~/.vim",
   "vimrc" => "~/.vimrc",
-  "gvimrc" => "~/.gvimrc"
+  "gvimrc" => "~/.gvimrc",
+  "tmux/tmux.conf" => "~/.tmux.conf"
 }
 
 desc "install dotfiles on the system"
