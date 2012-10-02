@@ -1,7 +1,8 @@
 --type-set=haml=.haml
+--type-set=coffee=.coffee
 --smart-case
 --ignore-dir=vendor
 --ignore-dir=log
 --ignore-dir=db
 --ignore-dir=coverage
---ignore-dir=javascripts
+--ignore-dir=public/javascripts

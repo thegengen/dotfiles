@@ -16,3 +16,5 @@ get_git_changes() {
 }
 export -f parse_git_branch
 export -f get_git_changes
+
+eval "$(hub alias -s)"

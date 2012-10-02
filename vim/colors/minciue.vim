@@ -1,28 +1,30 @@
 " Tomorrow - Full Colour and 256 Colour
 " http://chriskempson.com
 "
-" Hex colour conversion functions borrowed from the theme "Desert256""
+" Hex colour conversion functions borrowed from the theme 'Desert256'"
 
 " Default GUI Colours
 let s:foreground = "4d4d4c"
-let s:background = "ffffffff"
-let s:selection = "d6d6d6"
-let s:line = "efefef"
+let s:background = "fffffb"
+let s:selection = "e8e8e8"
+let s:line = "f8f8f8"
 let s:comment = "8e908c"
 let s:red = "c82829"
 let s:orange = "f5871f"
-let s:yellow = "eab700"
+let s:brown = "865000"
 let s:green = "718c00"
 let s:aqua = "3e999f"
 let s:blue = "4271ae"
 let s:purple = "8959a8"
 let s:window = "efefef"
-
+let s:gray = "888888"
+let s:string_background = "f0f8ff"
+let s:search_background = "ffffb0"
 set background=light
 hi clear
 syntax reset
 
-let g:colors_name = "Tomorrow"
+let g:colors_name = "minciue"
 
 if has("gui_running") || &t_Co == 88 || &t_Co == 256
 	" Returns an approximate grey index for the given grey level
@@ -234,12 +236,14 @@ if has("gui_running") || &t_Co == 88 || &t_Co == 256
 
 	" Vim Highlighting
 	call <SID>X("Normal", s:foreground, s:background, "")
-  highlight LineNr term=bold cterm=NONE ctermfg=DarkGrey ctermbg=NONE gui=NONE guifg=DarkGrey guibg=NONE
+        highlight LineNr term=bold cterm=NONE ctermfg=DarkGrey ctermbg=NONE gui=NONE guifg=DarkGrey guibg=NONE
 	call <SID>X("NonText", s:selection, "", "")
 	call <SID>X("SpecialKey", s:selection, "", "")
-	call <SID>X("Search", s:foreground, s:yellow, "")
-	call <SID>X("TabLine", s:foreground, s:background, "reverse")
-	call <SID>X("StatusLine", s:window, s:yellow, "reverse")
+	call <SID>X("Search", s:foreground, s:search_background, "")
+	call <SID>X("TabLineSel", s:foreground, s:background, "bold")
+	call <SID>X("TabLine", s:background, s:gray, "none")
+	call <SID>X("TabLineFill", s:gray, s:gray, "")
+	call <SID>X("StatusLine", s:window, s:foreground, "reverse")
 	call <SID>X("StatusLineNC", s:window, s:foreground, "reverse")
 	call <SID>X("VertSplit", s:window, s:window, "none")
 	call <SID>X("Visual", "", s:selection, "")
@@ -251,11 +255,12 @@ if has("gui_running") || &t_Co == 88 || &t_Co == 256
 	call <SID>X("MatchParen", "", s:selection, "")
 	call <SID>X("Folded", s:comment, s:background, "")
 	call <SID>X("FoldColumn", "", s:background, "")
+	call <SID>X("Wildmenu", s:background, s:blue, "")
 	if version >= 700
 		call <SID>X("CursorLine", "", s:line, "none")
 		call <SID>X("CursorColumn", "", s:line, "none")
 		call <SID>X("PMenu", s:foreground, s:selection, "none")
-		call <SID>X("PMenuSel", s:foreground, s:selection, "reverse")
+		call <SID>X("PMenuSel", s:foreground, s:selection, "bold")
 	end
 	if version >= 703
 		call <SID>X("ColorColumn", "", s:line, "none")
@@ -263,16 +268,16 @@ if has("gui_running") || &t_Co == 88 || &t_Co == 256
 
 	" Standard Highlighting
 	call <SID>X("Comment", s:comment, "", "")
-	call <SID>X("Todo", s:comment, s:background, "")
+	call <SID>X("Todo", s:red, s:background, "")
 	call <SID>X("Title", s:comment, "", "")
 	call <SID>X("Identifier", s:red, "", "none")
-	call <SID>X("Statement", s:foreground, "", "")
-	call <SID>X("Conditional", s:foreground, "", "")
+	call <SID>X("Statement", s:blue, "", "")
+	call <SID>X("Conditional", s:blue, "", "bold")
 	call <SID>X("Repeat", s:foreground, "", "")
 	call <SID>X("Structure", s:purple, "", "")
 	call <SID>X("Function", s:blue, "", "")
-	call <SID>X("Constant", s:orange, "", "")
-	call <SID>X("String", s:green, "", "")
+	call <SID>X("Constant", s:foreground, "", "bold")
+	call <SID>X("String", s:foreground, s:string_background, "")
 	call <SID>X("Special", s:foreground, "", "")
 	call <SID>X("PreProc", s:purple, "", "")
 	call <SID>X("Operator", s:aqua, "", "none")
@@ -285,7 +290,7 @@ if has("gui_running") || &t_Co == 88 || &t_Co == 256
 	call <SID>X("vimCommand", s:red, "", "none")
 
 	" C Highlighting
-	call <SID>X("cType", s:yellow, "", "")
+	call <SID>X("cType", s:brown, "", "")
 	call <SID>X("cStorageClass", s:purple, "", "")
 	call <SID>X("cConditional", s:purple, "", "")
 	call <SID>X("cRepeat", s:purple, "", "")
@@ -300,15 +305,19 @@ if has("gui_running") || &t_Co == 88 || &t_Co == 256
 
 	" Ruby Highlighting
 	call <SID>X("rubySymbol", s:green, "", "")
-	call <SID>X("rubyConstant", s:yellow, "", "")
+	call <SID>X("rubyString", s:foreground, s:string_background, "")
+	call <SID>X("rubyConstant", s:foreground, "", "bold")
 	call <SID>X("rubyAttribute", s:blue, "", "")
 	call <SID>X("rubyInclude", s:blue, "", "")
-	call <SID>X("rubyLocalVariableOrMethod", s:orange, "", "")
-	call <SID>X("rubyCurlyBlock", s:orange, "", "")
-	call <SID>X("rubyStringDelimiter", s:green, "", "")
-	call <SID>X("rubyInterpolationDelimiter", s:orange, "", "")
-	call <SID>X("rubyConditional", s:purple, "", "")
-	call <SID>X("rubyRepeat", s:purple, "", "")
+	call <SID>X("rubyBeginEnd", s:blue, "", "")
+	call <SID>X("rubyKeyword", s:red, "", "")
+	call <SID>X("rubyLocalVariableOrMethod", s:foreground, "", "")
+	call <SID>X("rubyCurlyBlock", s:foreground, "", "")
+	call <SID>X("rubyStringDelimiter", s:foreground, s:string_background, "bold")
+	call <SID>X("rubyInterpolation", s:red, s:string_background, "")
+	call <SID>X("rubyInterpolationDelimiter", s:foreground, s:string_background, "")
+	call <SID>X("rubyConditional", s:blue, "", "bold")
+	call <SID>X("rubyRepeat", s:blue, "", "")
 
 	" Python Highlighting
 	call <SID>X("pythonInclude", s:purple, "", "")
@@ -324,6 +333,8 @@ if has("gui_running") || &t_Co == 88 || &t_Co == 256
 	call <SID>X("javaScriptNumber", s:orange, "", "")
 	call <SID>X("javaScriptMember", s:orange, "", "")
 
+        " CoffeeScript conditioning
+	call <SID>X("coffeeConditional", s:blue, "", "bold")
 	" Diff Highlighting
 	call <SID>X("diffAdded", s:green, "", "")
 	call <SID>X("diffRemoved", s:red, "", "")

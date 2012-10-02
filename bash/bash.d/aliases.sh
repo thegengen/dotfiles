@@ -12,7 +12,10 @@ alias gemi="gem install --no-rdoc --no-ri"
 alias tmkill="tmux kill-session -t"
 alias tmlist="tmux list-sessions"
 
-alias mi="rake db:migrate && rake db:test:clone && rake annotate_models"
+alias mi="rake db:migrate && rake db:test:clone && rake annotate"
 alias rb="rake db:rollback && rake annotate_models && rake db:test:clone"
 
-alias guard="guard --no-bundler-warning"
+alias guard="bundle exec guard"
+
+alias python="python3"
+alias easy_install="/usr/local/share/python3/easy_install"

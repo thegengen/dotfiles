@@ -1,9 +1,17 @@
 [user]
-	name = Eugen Minciu
-	email = eugen@lesseverything.com
+  name = Eugen Minciu
+  email = eugen@lesseverything.com
 [github]
-	user = minciue
+  user = minciue
 [color]
-	branch = auto
-	status = auto
-	diff = auto
+  branch = auto
+  status = auto
+  diff = auto
+[alias]
+  head = !git l -1
+  h = !git head
+  hp = "source ~/.githelpers && show_git_head"
+  r = !git l -30
+  ra = !git r --all
+  l = "!source ~/.githelpers && pretty_git_log"
+  la = !git l --all

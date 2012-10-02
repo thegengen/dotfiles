@@ -1,9 +1,6 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =7
-let g:netrw_dirhist_1='/home/minciue/.vim/bundle/vim-ruby-refactoring'
-let g:netrw_dirhist_2='/home/minciue/.vim/bundle/vim-ruby-refactoring/plugin'
-let g:netrw_dirhist_3='/home/minciue/projects/cloudprint/lib/cloudprint'
-let g:netrw_dirhist_4='/home/minciue/projects/cloudprint/lib'
-let g:netrw_dirhist_5='/home/minciue/projects/ruby-mmo/engine'
-let g:netrw_dirhist_6='/home/minciue/.tmuxinator'
-let g:netrw_dirhist_7='/Users/minciue/.vimperator'
+let g:netrw_dirhist_cnt =4
+let g:netrw_dirhist_1='/Users/minciue/apps/lessaccounting/app/views/layouts/application'
+let g:netrw_dirhist_2='/Users/minciue/apps/lessaccounting/vendor/assets/javascripts'
+let g:netrw_dirhist_3='/Users/minciue/apps/lessaccounting/app/assets/javascripts'
+let g:netrw_dirhist_4='/Users/minciue/apps/lessaccounting'
