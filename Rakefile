@@ -8,8 +8,6 @@ files = {
   "vim" => "~/.vim",
   "vimrc" => "~/.vimrc",
   "gvimrc" => "~/.gvimrc",
-  "muttrc" => "~/.muttrc",
-  "mutt" => "~/.mutt",
   "tmux/tmux.conf" => "~/.tmux.conf"
 }
 
