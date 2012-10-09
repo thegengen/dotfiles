@@ -1,99 +1,166 @@
 " .vimrc file
-
 " (C) 2012 Eugen Minciu
 
-" === Basic Settings ===
-set nocp
-set number
-set incsearch
-set hlsearch
-set smartcase
-set ruler
-set wildmode=list:longest,full
-let mapleader=","
-set novisualbell
-set equalalways
-set nocursorline
-set autoread
-set directory=/tmp/
-filetype on
+" === Basic Behavior ===
+" The absolute requirements for a decent vim session
+set nocp              " Disable vi compatibility
+let mapleader=","     " Most keymappings use this. Better than \
+set directory=/tmp/   " Don't bleed swap files all over the place
+filetype on           " Enable plugins and syntax highlighting
 filetype plugin on
-filetype indent on
 syntax on
-set wildignore+=*.o,*.obj,.git
+set autoread          " Reload external file changes on the fly
+set shortmess=atI     " Stop with all the annoying prompts.
+set history=1000      " give us a proper amount of history
+
+
+
+" === Indentation ===
+" These settings make sense for editing Ruby, HAML and CoffeeScript.
+" I should turn them into autocommands when the time comes.
+filetype indent on
 set ai
 set si
 set expandtab
 set softtabstop=2
 set shiftwidth=2
-set history=1000
-set colorcolumn=100
-set scrolloff=10
-set shortmess=atI
-set autowrite
+
+
+
+" === Auto commands=
+autocmd BufNewFile,BufRead *.haml setlocal cursorcolumn
+autocmd BufNewFile,BufRead *.coffee setlocal cursorcolumn
+
+
+
+" === Display options ===
+set number
+set novisualbell
+set nocursorline
+set nowrap
+" color settings
+set bg=dark
+colorscheme minciue-base16
+
+
+
+" === Status line ===
+set laststatus=2
+set statusline=%<%f\ (%{&ft})\ %-4(%m%)%=%-19(%3l,%02c%03V%)
+set ruler             " display line and col no in the ruler
+
+
+
+" === Advanced Behavior ===
+set hidden            " keep previous buffers open
+set autowrite         " but save them when running commands or leaving them
+set scrolloff=5       " always keep 5 lines of context at the bottom
+
+
+
+" === Command line completion ===
+set wildmode=longest,list
+set wildignore+=*.o,*.obj,.git
+
+
+
+" === Load plugin bundles ===
+" To add any plugin, just clone it to ~/.vim/bundle
 call pathogen#infect()
 
-" color settings
-set bg=light
-colorscheme minciue
 
-" === Plugin Settings ===
-" autocomplpop
+
+
+
+
+
+
+
+
+" === Autocompletion ===
+set pumheight=10
 let g:acp_completeoptPreview = 0
-let g:acp_behaviorKeywordLength = 5
-let g:acp_behaviorKeywordIgnores = ['if','end','class','module', 'do', 'self']
+let g:acp_behaviorKeywordLength = 5 " set it reasonably high so it doesn't intrude
+let g:acp_behaviorKeywordIgnores = ['if','end','class','module', 'do', 'self', 'false']
 let g:acp_behaviorRubyOmniLength = 5
 let g:acp_ignoreCaseOption = 0
 let g:acp_completeOption = '.,w,b,t'
 
+" MAP: Tab and Shift-Tab will scroll up and down in the autocompletion menu
 inoremap <expr><tab> pumvisible()?"<down>":"<tab>"
 inoremap <expr><s-tab> pumvisible()?"<up>":"<s-tab>"
 
-"ctrlp
+
+
+" === Go to tag ===
+" MAP: Go to tag
+autocmd BufRead,BufWrite *.rb silent !ctags -R --exclude="app/models/*/api.rb" --exclude="**/*.haml" --exclude="**/*.js" lib app/*/*.rb 2>/dev/null
+map ; :tjump 
+
+
+
+" === Go to file ===
 let g:ctrlp_custom_ignore = '\.git$\|\.svn$\|\.hg$\|*\.o|*\.obj\|*\.jar\|vendor\|bin\|tags\|tmp\|log\|.DS_Store$'
 let g:ctrlp_lazy_update = 1
 
-"vim-rubytest
-let g:rubytest_cmd_test = "bundle exec ruby %p"
-let g:rubytest_cmd_testcase = "bundle exec ruby %p -n '/%c/'"
-" auto commands
-autocmd BufRead,BufWrite *.rb silent !ctags -R --exclude="app/models/*/api.rb" --exclude="**/*.haml" --exclude="**/*.js" lib app/*/*.rb 2>/dev/null
-autocmd BufNewFile,BufRead *.haml setlocal cursorcolumn 
-autocmd BufNewFile,BufRead *.coffee setlocal cursorcolumn
+" MAP: Go to file
+let g:ctrlp_map = '<Space>'
 
-" === Shorcuts ===
 
-" tags: 1 shortcut
-map ; :tjump 
 
-" remove search highlighting
+" === Misc mappings ===
+" MAP: Save file
+map s <ESC>:w<CR>
+
+" === Selecting methods ===
+" MAP: vim, vam to visually select, but almost anything goes. Examples:
+" cim: change method contents
+" dam: delete whole method
+" ,cim: comment out method contents
+
+vmap im <Esc>[mjV]Mk
+vmap am <Esc>[mV]M
+
+omap im :normal vim<CR>
+omap am :normal vam<CR>
+
+
+" === Searching in file ===
+set incsearch   " Incremental
+set hlsearch    " Highlight results
+set smartcase   " Only be case-sensitive when searching with uppercase chars
+
+" MAP: Clear highlighting of results
 map <Leader>/ :nohlsearch<CR>
 
-" shift-enter to move to the next line
-imap <S-Enter> <Esc>o
 
-" grep: 4 shortcuts
-map <Leader>f :Ack 
-map <Leader>F :Ack <cword> 
+
+" === Project-wide search (with ack) ===
+set grepprg=ack
+set grepformat=%f:%l:%m
+
+" MAP: search. go forward and back in the results
+map <Leader>f :grep 
+map <Leader>F :grep <cword><CR>
 map <Leader>n :silent cnext<CR>
 map <Leader>p :silent cprev<CR>
 
-" commentary: 2 shortcuts
+
+
+" === Comment out code ===
+" MAP: Toggle comments
 xmap <Leader>c  <Plug>Commentary
 nmap <Leader>c  <Plug>Commentary
-xmap <Leader>C  <Plug>CommentaryUndo
-nmap <Leader>C  <Plug>CommentaryUndo
 
-" ctrlp: 1 shortcuts
-map <Space> :CtrlP<CR>
 
-" save: 1 shortcut
-map s <ESC>:w<CR>
 
-" window navigaton: 1 shortcut
-map <Leader>w <C-w>
+" === Paste mode ===
+" MAP: Toggle paste mode
+set pastetoggle=<Leader>P
 
-" open alternate file: 1 shortcut
+
+
+" === Working with alternate files ===
 function! AlternateFile()
   let path = expand("%")
   let new_path = ''
@@ -138,25 +205,9 @@ function! OpenAlternate()
   end
 endfunction
 
+" MAP: Open alternate file
 map <Leader>a :call OpenAlternate()<CR>
+
+" MAP: Run test
 map <Leader>t :call RunTest()<CR>
 map <Leader>T :!rake<CR>
-
-" working with methods
-vmap im <Esc>[mjV]Mk
-vmap am <Esc>[mV]M
-
-omap im :normal vim<CR>
-omap am :normal vam<CR>
-
-function! ResCur()
-  if line("'\"") <= line("$")
-    normal! g`"
-    return 1
-  endif
-endfunction
-
-augroup resCur
-  autocmd!
-  autocmd BufWinEnter * call ResCur()
-augroup END
