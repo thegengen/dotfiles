@@ -1,4 +1,5 @@
 . ~/.bash.d/aliases.sh
+. ~/.bash.d/autojump.sh
 . ~/.bash.d/vars.sh
 . ~/.bash.d/rvm.sh
 . ~/.bash.d/tmuxinator.sh
