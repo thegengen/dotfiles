@@ -6,7 +6,6 @@
 . ~/.bash.d/git.sh
 . ~/.bash.d/completion.sh
 . ~/.bash.d/git_completion.sh
-. ~/.bash.d/private.sh
 
 # keep this last so any functions defined above can be loaded
 . ~/.bash.d/prompt.sh
