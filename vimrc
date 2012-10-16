@@ -30,11 +30,11 @@ set shiftwidth=2
 " === Auto commands=
 autocmd BufNewFile,BufRead *.haml setlocal cursorcolumn
 autocmd BufNewFile,BufRead *.coffee setlocal cursorcolumn
-
+autocmd BufNewFile,BufWrite * setlocal relativenumber
 
 
 " === Display options ===
-set number
+set relativenumber
 set novisualbell
 set nocursorline
 set nowrap
