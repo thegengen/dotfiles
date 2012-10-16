@@ -100,8 +100,8 @@ map ; :tjump
 
 
 " === Go to file ===
-let g:ctrlp_custom_ignore = '\.git$\|\.svn$\|\.hg$\|*\.o|*\.obj\|*\.jar\|vendor\|bin\|tags\|tmp\|log\|.DS_Store$'
-let g:ctrlp_lazy_update = 1
+let g:ctrlp_custom_ignore = '\.git$\|\.svn$\|\.hg$\|*\.o|*\.obj\|*\.jar\|vendor\|bin\|tags\|tmp\|lib\/old_plugins\|log\|.DS_Store$'
+let g:ctrlp_lazy_update = 100
 
 " MAP: Go to file
 let g:ctrlp_map = '<Space>'
