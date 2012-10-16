@@ -94,7 +94,7 @@ inoremap <expr><s-tab> pumvisible()?"<up>":"<s-tab>"
 
 " === Go to tag ===
 " MAP: Go to tag
-autocmd BufRead,BufWrite *.rb silent !ctags -R --exclude="app/models/*/api.rb" --exclude="**/*.haml" --exclude="**/*.js" lib app/*/*.rb 2>/dev/null
+autocmd BufRead,BufWrite *.rb silent !ctags -R --exclude="app/models/*/api.rb" --exclude="lib/old_plugins/*" --exclude="**/*.haml" --exclude="**/*.js" lib app/*/*.rb 2>/dev/null
 map ; :tjump 
 
 
