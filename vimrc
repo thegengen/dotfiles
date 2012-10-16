@@ -124,7 +124,10 @@ vmap am <Esc>[mV]M
 omap im :normal vim<CR>
 omap am :normal vam<CR>
 
-
+" MAP: Running commands
+nmap ! :!
+map <leader>r :!read<CR>
+map <leader>g :!git
 " === Searching in file ===
 set incsearch   " Incremental
 set hlsearch    " Highlight results
