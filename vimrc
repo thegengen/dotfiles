@@ -203,7 +203,8 @@ function! RunTest()
   if empty(path)
     :echo 'No test file.'
   else
-    :exe ':!ruby ' . path
+"    :exe ':!zeus testrb ' . path
+    :exe ':!testrb ' . path
   endif
 endfunction
 
