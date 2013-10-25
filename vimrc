@@ -27,12 +27,6 @@ set shiftwidth=2
 
 
 
-" === Auto commands=
-autocmd BufNewFile,BufRead *.haml setlocal cursorcolumn
-autocmd BufNewFile,BufRead *.coffee setlocal cursorcolumn
-autocmd BufNewFile,BufWrite * setlocal relativenumber
-
-
 " === Display options ===
 set relativenumber
 set novisualbell
@@ -70,35 +64,6 @@ call pathogen#infect()
 
 
 
-
-
-
-
-
-
-
-" === Autocompletion ===
-set pumheight=10
-let g:acp_completeoptPreview = 0
-let g:acp_behaviorKeywordLength = 5 " set it reasonably high so it doesn't intrude
-let g:acp_behaviorKeywordIgnores = ['if','end','class','module', 'do', 'self', 'false']
-let g:acp_behaviorRubyOmniLength = 5
-let g:acp_ignoreCaseOption = 0
-let g:acp_completeOption = '.,w,b,t'
-
-" MAP: Tab and Shift-Tab will scroll up and down in the autocompletion menu
-inoremap <expr><tab> pumvisible()?"<down>":"<tab>"
-inoremap <expr><s-tab> pumvisible()?"<up>":"<s-tab>"
-
-
-
-" === Go to tag ===
-" MAP: Go to tag
-autocmd BufRead,BufWrite *.rb silent !ctags -R --exclude="app/models/*/api.rb" --exclude="lib/old_plugins/*" --exclude="**/*.haml" --exclude="**/*.js" lib app/*/*.rb 2>/dev/null
-map ; :tjump 
-
-
-
 " === Go to file ===
 let g:ctrlp_custom_ignore = '\.git$\|\.svn$\|\.hg$\|*\.o|*\.obj\|*\.jar\|vendor\|bin\|tags\|tmp\|lib\/old_plugins\|log\|.DS_Store$'
 let g:ctrlp_lazy_update = 100
@@ -124,10 +89,6 @@ vmap am <Esc>[mV]M
 omap im :normal vim<CR>
 omap am :normal vam<CR>
 
-" MAP: Running commands
-nmap ! :!
-map <leader>r :!read<CR>
-map <leader>g :!git
 " === Searching in file ===
 set incsearch   " Incremental
 set hlsearch    " Highlight results
@@ -142,12 +103,6 @@ map <Leader>/ :nohlsearch<CR>
 set grepprg=ack
 set grepformat=%f:%l:%m
 
-" MAP: search. go forward and back in the results
-map <Leader>f :grep 
-map <Leader>F :grep <cword><CR>
-map <Leader>n :silent cnext<CR>
-map <Leader>p :silent cprev<CR>
-
 
 
 " === Comment out code ===
@@ -156,68 +111,22 @@ xmap <Leader>c  <Plug>Commentary
 nmap <Leader>c  <Plug>Commentary
 
 
-
-" === Paste mode ===
-" MAP: Toggle paste mode
-set pastetoggle=<Leader>P
+" === Ctags
+map <Leader>t :!ctags -R app<CR>
 
 
 
-" === Working with alternate files ===
-function! AlternateFile()
-  let path = expand("%")
-  let new_path = ''
-  if !empty(matchstr(path, "app/models/"))
-    let new_path = substitute(path, "app/models", "test/unit", "")
-    let new_path = substitute(new_path, ".rb", "_test.rb", "")
-  elseif !empty(matchstr(path, "test/unit/"))
-    let new_path =substitute(path, "test/unit", "app/models", "")
-    let new_path = substitute(new_path, "_test.rb", ".rb", "")
-  elseif !empty(matchstr(path, "app/interactions/"))
-    let new_path = substitute(path, "app/interactions", "test/interactions", "")
-    let new_path = substitute(new_path, ".rb", "_test.rb", "")
-  elseif !empty(matchstr(path, "test/interactions/"))
-    let new_path =substitute(path, "test/interactions", "app/interactions", "")
-    let new_path = substitute(new_path, "_test.rb", ".rb", "")
- elseif !empty(matchstr(path, "app/controllers/"))
-    let new_path =substitute(path, "app/controllers", "test/functional", "")
-    let new_path = substitute(new_path, ".rb", "_test.rb", "")
-  elseif !empty(matchstr(path, "test/functional/"))
-    let new_path =substitute(path, "test/functional", "app/controllers", "")
-    let new_path = substitute(new_path, "_test.rb", ".rb", "")
-  elseif !empty(matchstr(path, "lib/"))
-    let new_path = substitute(path,"lib","test", "")
-    let new_path = substitute(new_path, ".rb", "_test.rb", "")
-  elseif !empty(matchstr(path, "test/"))
-    let new_path = substitute(path, "test", "lib", "")
-    let new_path = substitute(new_path, "_test.rb", ".rb", "")
-  endif
-  return new_path
-endfunction
+" === Setup Vundle ===
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
 
-function! RunTest()
-  let path = expand("%")
-  if empty(matchstr(path, "_test.rb"))
-    let path = AlternateFile()
-  end
-  if empty(path)
-    :echo 'No test file.'
-  else
-"    :exe ':!zeus testrb ' . path
-    :exe ':!testrb ' . path
-  endif
-endfunction
+Bundle 'gmarik/vundle'
+Bundle 'kien/ctrlp.vim'
+Bundle 'Valloric/YouCompleteMe'
+Bundle 'tpope/vim-commentary.git'
+Bundle 'tpope/vim-haml'
+Bundle 'groenewege/vim-less'
+Bundle 'kchmck/vim-coffee-script'
 
-function! OpenAlternate()
-  let new_path = AlternateFile()
-  if !empty(new_path)
-    :exe ':e ' . new_path
-  end
-endfunction
-
-" MAP: Open alternate file
-map <Leader>a :call OpenAlternate()<CR>
-
-" MAP: Run test
-map <Leader>t :call RunTest()<CR>
-map <Leader>T :!rake<CR>
+syntax enable
+filetype plugin indent on
