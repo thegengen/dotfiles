@@ -8,7 +8,6 @@ files = {
   "vim" => "~/.vim",
   "vimrc" => "~/.vimrc",
   "gvimrc" => "~/.gvimrc",
-  "tmux/tmux.conf" => "~/.tmux.conf"
 }
 
 desc "install dotfiles on the system"
