@@ -22,6 +22,8 @@ task :fetch do
   files.each do |dest, source|
     run("rm -rf #{dest} && cp -r #{source} #{dest}")
   end
+  run("rm -rf vim/bundle/*")
+  run("cp -r ~/.vim/bundle/vundle vim/bundle")
 end
 
 def run(cmd)
