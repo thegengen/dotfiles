@@ -112,7 +112,7 @@ nmap <Leader>c  <Plug>Commentary
 
 
 " === Ctags
-map <Leader>t :!ctags -R app<CR>
+map <Leader>t :!ctags -R app lib<CR>
 
 
 
@@ -127,6 +127,7 @@ Bundle 'tpope/vim-commentary.git'
 Bundle 'tpope/vim-haml'
 Bundle 'groenewege/vim-less'
 Bundle 'kchmck/vim-coffee-script'
+Bundle 'avsm/ocaml-annot'
 
 syntax enable
 filetype plugin indent on

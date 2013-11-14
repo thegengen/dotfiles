@@ -19,3 +19,5 @@
   c = !git commit
   a = !git add
   d = !git diff
+[push]
+  default = simple
