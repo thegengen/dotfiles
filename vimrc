@@ -8,7 +8,6 @@ let mapleader=","     " Most keymappings use this. Better than \
 set directory=/tmp/   " Don't bleed swap files all over the place
 filetype on           " Enable plugins and syntax highlighting
 filetype plugin on
-syntax on
 set autoread          " Reload external file changes on the fly
 set shortmess=atI     " Stop with all the annoying prompts.
 set history=1000      " give us a proper amount of history
@@ -28,13 +27,13 @@ set shiftwidth=2
 
 
 " === Display options ===
-set relativenumber
 set novisualbell
 set nocursorline
 set nowrap
+set number
 " color settings
-set bg=dark
-colorscheme minciue-base16
+set bg=light
+colorscheme solarized
 
 
 
@@ -74,8 +73,10 @@ let g:ctrlp_map = '<Space>'
 
 
 " === Misc mappings ===
-" MAP: Save file
 map s <ESC>:w<CR>
+map ! <ESC>:!
+map <Leader>r <ESC>:!ruby %<CR>
+map <Leader>g <ESC>:!git 
 
 " === Selecting methods ===
 " MAP: vim, vam to visually select, but almost anything goes. Examples:
@@ -112,7 +113,7 @@ nmap <Leader>c  <Plug>Commentary
 
 
 " === Ctags
-map <Leader>t :!ctags -R app lib<CR>
+map <Leader>T :!ctags -R app lib<CR>
 
 
 
@@ -122,12 +123,19 @@ call vundle#rc()
 
 Bundle 'gmarik/vundle'
 Bundle 'kien/ctrlp.vim'
-Bundle 'Valloric/YouCompleteMe'
+Bundle 'ervandew/supertab'
 Bundle 'tpope/vim-commentary.git'
 Bundle 'tpope/vim-haml'
 Bundle 'groenewege/vim-less'
 Bundle 'kchmck/vim-coffee-script'
-Bundle 'avsm/ocaml-annot'
+Bundle 'altercation/vim-colors-solarized'
+Bundle 'jnwhiteh/vim-golang'
 
-syntax enable
 filetype plugin indent on
+syntax enable
+syntax on
+
+au FileType go setl sw=8 sts=8 et
+autocmd FileType ocaml source ~/.opam/system/share/vim/syntax/ocp-indent.vim
+set rtp+=~/.opam/system/share/ocamlmerlin/vim
+set rtp+=~/.opam/system/share/ocamlmerlin/vimbufsync

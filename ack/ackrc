@@ -3,6 +3,7 @@
 --smart-case
 --ignore-dir=vendor
 --ignore-dir=log
+--ignore-dir=tmp
 --ignore-dir=db
 --ignore-dir=coverage
 --ignore-dir=public/javascripts
