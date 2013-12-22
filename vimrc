@@ -31,15 +31,12 @@ set novisualbell
 set nocursorline
 set nowrap
 set number
-" color settings
-set bg=light
-colorscheme solarized
 
 
 
 " === Status line ===
 set laststatus=2
-set statusline=%<%f\ (%{&ft})\ %-4(%m%)%=%-19(%3l,%02c%03V%)
+"set statusline=%<%f\ (%{&ft})\ %-4(%m%)%=%-19(%3l,%02c%03V%)
 set ruler             " display line and col no in the ruler
 
 
@@ -92,12 +89,7 @@ omap am :normal vam<CR>
 
 " === Searching in file ===
 set incsearch   " Incremental
-set hlsearch    " Highlight results
 set smartcase   " Only be case-sensitive when searching with uppercase chars
-
-" MAP: Clear highlighting of results
-map <Leader>/ :nohlsearch<CR>
-
 
 
 " === Project-wide search (with ack) ===
@@ -128,12 +120,10 @@ Bundle 'tpope/vim-commentary.git'
 Bundle 'tpope/vim-haml'
 Bundle 'groenewege/vim-less'
 Bundle 'kchmck/vim-coffee-script'
-Bundle 'altercation/vim-colors-solarized'
-Bundle 'jnwhiteh/vim-golang'
 
 filetype plugin indent on
 syntax enable
-syntax on
+syntax off
 
 au FileType go setl sw=8 sts=8 et
 autocmd FileType ocaml source ~/.opam/system/share/vim/syntax/ocp-indent.vim

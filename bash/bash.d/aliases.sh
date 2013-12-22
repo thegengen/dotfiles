@@ -2,6 +2,7 @@ alias ls="ls -G"
 alias sp="source ~/.bash_profile"
 alias rdb="rdebug -Itest --no-stop"
 alias ruby="ruby -Itest"
+alias lua="luajit"
 
 alias gemi="gem install --no-rdoc --no-ri"
 

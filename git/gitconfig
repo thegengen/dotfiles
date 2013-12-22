@@ -21,3 +21,5 @@
   d = !git diff
 [push]
   default = simple
+[core]
+	excludesfile = /Users/minciue/.gitignore_global
