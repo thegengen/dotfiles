@@ -5,6 +5,7 @@ files = {
   "rubygems/gemrc" => "~/.gemrc",
   "git/gitconfig" => "~/.gitconfig",
   "git/gitignore" => "~/.gitignore",
+  "tmux/tmux.conf" => "~/.tmux.conf",
   "vim" => "~/.vim",
   "vimrc" => "~/.vimrc",
   "gvimrc" => "~/.gvimrc",
