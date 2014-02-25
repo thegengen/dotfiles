@@ -30,7 +30,9 @@ set shiftwidth=2
 set novisualbell
 set nocursorline
 set nowrap
-set number
+set nonumber
+set hlsearch
+"set relativenumber
 
 
 
@@ -61,7 +63,7 @@ call pathogen#infect()
 
 
 " === Go to file ===
-let g:ctrlp_custom_ignore = '\.git$\|\.svn$\|\.hg$\|*\.o|*\.obj\|*\.jar\|vendor\|bin\|tags\|tmp\|lib\/old_plugins\|log\|.DS_Store$'
+let g:ctrlp_custom_ignore = '\.git$\|\.svn$\|\.hg$\|*\.o|*\.obj\|*\.jar\|doc\|public\|vendor\|bin\|tags\|tmp\|lib\/old_plugins\|log\|.DS_Store$'
 let g:ctrlp_lazy_update = 100
 
 " MAP: Go to file
@@ -116,16 +118,10 @@ call vundle#rc()
 Bundle 'gmarik/vundle'
 Bundle 'kien/ctrlp.vim'
 Bundle 'ervandew/supertab'
-Bundle 'tpope/vim-commentary.git'
-Bundle 'tpope/vim-haml'
-Bundle 'groenewege/vim-less'
-Bundle 'kchmck/vim-coffee-script'
+Bundle 'tpope/vim-endwise'
 
+colo jiro
 filetype plugin indent on
-syntax enable
-syntax off
+syntax on
 
-au FileType go setl sw=8 sts=8 et
-autocmd FileType ocaml source ~/.opam/system/share/vim/syntax/ocp-indent.vim
-set rtp+=~/.opam/system/share/ocamlmerlin/vim
-set rtp+=~/.opam/system/share/ocamlmerlin/vimbufsync
+au FileType c setl sw=8 sts=8 et
