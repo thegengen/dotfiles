@@ -5,52 +5,42 @@ endif
 
 let colors_name = "jiro"
 
-if !has('gui_running')
-  hi Normal       cterm=NONE           ctermbg=NONE   ctermfg=black
-  hi SpecialKey   cterm=NONE           ctermbg=NONE   ctermfg=black
-  hi IncSearch    cterm=NONE           ctermbg=NONE   ctermfg=cyan
-  hi Search       cterm=reverse        ctermbg=NONE   ctermfg=black
-  hi MoreMsg      cterm=NONE                          ctermfg=NONE
-  hi ModeMsg      cterm=NONE                          ctermfg=NONE
-  hi CursorLineNr cterm=bold           ctermbg=NONE   ctermfg=black
-  hi LineNr       cterm=bold           ctermbg=NONE   ctermfg=darkgray
-  hi StatusLine   cterm=reverse                       ctermfg=NONE
-  hi StatusLineNC cterm=reverse                       ctermfg=NONE
-  hi VertSplit    cterm=reverse                       ctermfg=NONE
-  hi Title        cterm=NONE                          ctermfg=NONE
-  hi Visual       cterm=reverse                       ctermfg=NONE
-  hi VisualNOS    cterm=bold                          ctermfg=NONE
-  hi WarningMsg   cterm=standout                      ctermfg=NONE
-  hi WildMenu     cterm=standout                      ctermfg=NONE
-  hi Folded       cterm=standout                      ctermfg=NONE
-  hi FoldColumn   cterm=standout                      ctermfg=NONE
-  hi DiffAdd      cterm=bold                          ctermfg=NONE
-  hi DiffChange   cterm=bold                          ctermfg=NONE
-  hi DiffDelete   cterm=bold                          ctermfg=NONE
-  hi DiffText     cterm=reverse                       ctermfg=NONE
-  hi Type         cterm=bold          ctermbg=NONE    ctermfg=none
-  hi Keyword      cterm=None          ctermbg=NONE    ctermfg=NONE
-  hi Number       cterm=None          ctermbg=NONE    ctermfg=NONE
-  hi Char         cterm=None          ctermbg=NONE    ctermfg=NONE
-  hi Format       cterm=None          ctermbg=NONE    ctermfg=NONE
-  hi Special      cterm=None          ctermbg=NONE    ctermfg=NONE
-  hi Constant     cterm=None          ctermbg=NONE    ctermfg=NONE
-  hi PreProc      cterm=None                          ctermfg=NONE
-  hi Directive    cterm=NONE          ctermbg=NONE    ctermfg=NONE
-  hi Conditional  cterm=NONE          ctermbg=NONE    ctermfg=blue
-  hi Comment      cterm=NONE          ctermbg=NONE    ctermfg=NONE
-  hi Func         cterm=None          ctermbg=NONE    ctermfg=NONE
-  hi Function     cterm=None          ctermbg=NONE    ctermfg=green
-  hi Identifier   cterm=NONE          ctermbg=NONE    ctermfg=NONE
-  hi Statement    cterm=NONE          ctermbg=NONE    ctermfg=blue
-  hi Ignore       cterm=bold                          ctermfg=NONE
-  hi String       term=underline                      ctermfg=NONE
-  hi ErrorMsg     cterm=reverse       ctermbg=15      ctermfg=9
-  hi Error        cterm=reverse       ctermbg=15      ctermfg=9
-  hi Todo         cterm=NONE          ctermbg=NONE     ctermfg=red
-  hi MatchParen   cterm=reverse       ctermbg=NONE     ctermfg=NONE
-  hi ColorColumn                                      ctermbg=255
-  hi Pmenu        cterm=reverse       ctermbg=NONE    ctermfg=NONE
-  hi Pmenusel     cterm=reverse       ctermbg=NONE    ctermfg=blue
-  hi Tabline      cterm=reverse       ctermbg=NONE    ctermfg=NONE
-endif
+hi Normal       guibg=white   guifg=#33322d
+hi NonText      guibg=NONE    guifg=NONE
+hi CursorLine   guibg=NONE    guifg=NONE       gui=REVERSE
+hi SpecialKey   guibg=NONE    guifg=NONE
+hi IncSearch    guibg=NONE    guifg=#e2a412    gui=NONE
+hi Search       guibg=NONE    guifg=#e2a412    gui=NONE
+hi LineNr       guibg=NONE    guifg=darkgray
+hi StatusLine   guibg=white   guifg=#404040
+hi Visual       guibg=#404040 guifg=white
+hi Type         guibg=NONE    guifg=NONE       gui=NONE
+hi Keyword      guibg=NONE    guifg=NONE
+hi Number       guibg=NONE    guifg=NONE
+hi Char         guibg=NONE    guifg=NONE
+hi Format       guibg=NONE    guifg=NONE
+hi Special      guibg=NONE    guifg=NONE
+hi Constant     guibg=NONE    guifg=NONE
+hi PreProc      guifg=NONE    guibg=NONE
+hi Directive    guibg=NONE    guifg=NONE
+hi Conditional  guibg=NONE    guifg=#16518c    gui=BOLD
+hi Comment      guibg=NONE    guifg=NONE
+hi Func         guibg=NONE    guifg=NONE
+hi Function     guibg=NONE    guifg=#4b7627    gui=BOLD
+hi Identifier   guibg=NONE    guifg=NONE
+hi Statement    guibg=NONE    guifg=#16518c    gui=BOLD
+hi Ignore       guibg=NONE    guifg=NONE       gui=BOLD
+hi String                                      gui=NONE
+hi ErrorMsg     guibg=#bb3930 guifg=white
+hi Error        guibg=#bb3930 guifg=white
+hi Todo         guibg=white   guifg=#bb3930    gui=REVERSE
+hi MatchParen   guibg=NONE    guifg=#e2a412
+hi Pmenu        guibg=NONE    guifg=NONE       gui=REVERSE
+hi Pmenusel     guibg=#e2a412 guifg=NONE       gui=REVERSE
+hi Tabline      guibg=#404040 guifg=white      gui=NONE
+hi TablineFill  guibg=#404040 guifg=NONE       gui=NONE
+hi ExtraWhitespace guibg=#bb3930 guifg=white  gui=NONE
+
+" Tell other syntax files to get off my lawn
+hi Title        guibg=NONE    guifg=NONE
+hi ExtraWhitespace guibg=#bb3930 guifg=white

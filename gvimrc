@@ -1,5 +1,5 @@
-set guifont=Source\ Code\ Pro\ Light:h18
-set linespace=7
+set guifont=Liberation\ Mono:h16
+set linespace=6
 set showtabline=2
 set guioptions-=T " hide toolbar
 set guioptions-=e " use text-based tabs
