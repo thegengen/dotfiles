@@ -1,8 +1,8 @@
-set guifont=Liberation\ Mono:h16
-set linespace=6
+set guifont=Liberation\ Mono\ for\ Powerline:h14
+set linespace=5
 set showtabline=2
 set guioptions-=T " hide toolbar
-set guioptions-=e " use text-based tabs
+set guioptions-=e " use text tabs
 set guioptions-=m " don't show menu
 set guioptions-=r " don't show scrollbars
 set guioptions-=l " don't show scrollbars
