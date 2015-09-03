@@ -1,20 +1,12 @@
 . ~/.bash.d/aliases.sh
 . ~/.bash.d/autojump.sh
 . ~/.bash.d/vars.sh
-. ~/.bash.d/rvm.sh
 . ~/.bash.d/tmuxinator.sh
 . ~/.bash.d/git.sh
 . ~/.bash.d/completion.sh
 . ~/.bash.d/git_completion.sh
 
 # keep this last so any functions defined above can be loaded
-. ~/.bash.d/prompt.sh
-
-
-# OPAM configuration
-. /Users/minciue/.opam/opam-init/init.sh > /dev/null 2> /dev/null || true
-eval `opam config env`
-
-# Load RVM into a shell session *as a function*
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" 
-PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+# . ~/.bash.d/prompt.sh
+. /usr/local/share/chruby/chruby.sh
+. /usr/local/share/chruby/auto.sh

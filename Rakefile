@@ -5,7 +5,6 @@ files = {
   "rubygems/gemrc" => "~/.gemrc",
   "git/gitconfig" => "~/.gitconfig",
   "git/gitignore" => "~/.gitignore",
-  "tmux/tmux.conf" => "~/.tmux.conf",
   "vim" => "~/.vim",
   "vimrc" => "~/.vimrc",
   "gvimrc" => "~/.gvimrc",
@@ -23,8 +22,8 @@ task :fetch do
   files.each do |dest, source|
     run("rm -rf #{dest} && cp -r #{source} #{dest}")
   end
+  run("ls vim/bundle > vimplugins.txt")
   run("rm -rf vim/bundle/*")
-  run("cp -r ~/.vim/bundle/Vundle.vim vim/bundle")
 end
 
 def run(cmd)
